@@ -2,10 +2,12 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY . .
+COPY requirements.txt .
 
-RUN pip install flask flask-cors flask-talisman nose flake8
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
 
 EXPOSE 8080
 
-CMD ["python", "-m", "service"]
+CMD ["python", "app.py"]
